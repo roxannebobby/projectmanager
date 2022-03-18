@@ -6,7 +6,8 @@ const registerUser = (req, res) => {
 
 	//validation
 	if (!username || !email || !password) {
-		return res.status(400).json({ message: 'please include all fields' });
+		res.status(400);
+		throw new Error('Please complete all fields.');
 	}
 };
 
