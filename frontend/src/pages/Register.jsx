@@ -1,8 +1,9 @@
-import {useState} from 'react'
+import {useState, useEffect} from 'react'
 import {FaUser} from 'react-icons/fa'
 import {toast} from 'react-toastify'
 import {useSelector, useDispatch} from 'react-redux'
 import {register} from '../features/auth/authSlice';
+import {useNavigate} from 'react-router-dom'
 
 function Register() {
   const [formData, setFormData] = useState({
@@ -16,7 +17,18 @@ function Register() {
 
   const dispatch = useDispatch()
 
-  const {user, isLoading, isSuccess, message} = useSelector(state => state.auth)
+  const {user, isLoading, isSuccess, isError, message} = useSelector(state => state.auth)
+
+  useEffect(() => {
+    if(isError) {
+      toast.error(message)
+    }
+
+    //Redirect when logged in
+    if(isSuccess && user) {
+      const navigate = useNavigate
+    }
+  })
 
   const onChange = (e) => {
     setFormData((prevState) => ({
