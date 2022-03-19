@@ -1,6 +1,6 @@
 import {useState} from 'react'
 import {FaUser} from 'react-icons/fa'
-
+import {toast} from 'react-toastify'
 
 function Register() {
   const [formData, setFormData] = useState({
@@ -19,6 +19,13 @@ function Register() {
     }))
   }
 
+  const onSubmit = (e) => {
+    e.preventDefault()
+
+    if (password !== password2) {
+      toast.error('Passwords do not match.')
+    }
+  }
   return (
     <div className='container'>
     <section className='heading'>
@@ -32,19 +39,51 @@ function Register() {
       <section className="form">
         <form onSubmit={onSubmit}>
          <div className='form-group'>
-          <input type="text" className="form-control" name='name' id='name' value={name} onChange={onChange} placeholder='Enter your name' />
+          <input 
+            type="text" 
+            className="form-control" 
+            name='name' 
+            id='name' 
+            value={name} 
+            onChange={onChange} 
+            placeholder='Enter your name' 
+            required />
           </div>
 
           <div className='form-group'>
-          <input type="email" className="form-control" name='email' id='email' value={email} onChange={onChange} placeholder='Enter your email' />
+          <input 
+            type="email" 
+            className="form-control" 
+            name='email' 
+            id='email' 
+            value={email} 
+            onChange={onChange} 
+            placeholder='Enter your email' 
+            required />
           </div>
 
           <div className='form-group'>
-          <input type="password" className="form-control" name='password' id='password' value={password} onChange={onChange} placeholder='Enter your password' />
+          <input 
+            type="password" 
+            className="form-control" 
+            name='password' 
+            id='password' 
+            value={password} 
+            onChange={onChange} 
+            placeholder='Enter your password' 
+            required />
           </div>
 
           <div className='form-group'>
-          <input type="password" className="form-control" name='password2' id='password2' value={password2} onChange={onChange} placeholder='Renter your name' />
+          <input 
+            type="password" 
+            className="form-control" 
+            name='password2' 
+            id='password2' 
+            value={password2} 
+            onChange={onChange}
+            placeholder='Renter your name' 
+            required />
           </div>
 <div className="form-group">
   <button className='btn btn-block'>  
